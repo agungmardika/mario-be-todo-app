@@ -1,0 +1,226 @@
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    transition: width 0.3s ease, transform 0.3s ease;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.sidebar.hidden {
+    width: 80px;
+    overflow: hidden;
+}
+
+.sidebar.hidden .nav-link {
+    text-align: center;
+}
+
+.sidebar.hidden .nav-link i {
+    font-size: 24px;
+}
+
+.sidebar.hidden .nav-link span {
+    display: none;
+}
+
+.sidebar.hidden .sidebar-header,
+.sidebar.hidden .sidebar-footer,
+.sidebar.hidden .sidebar-search {
+    display: none;
+}
+
+.sidebar .sidebar-header {
+    text-align: center;
+    padding: 20px 10px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.sidebar .sidebar-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.sidebar .user-info {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.sidebar .sidebar-search {
+    padding: 15px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.sidebar .sidebar-search input {
+    border-radius: 20px;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+}
+
+.nav {
+    padding: 15px 0;
+    list-style: none;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.nav-item {
+    margin-bottom: 10px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-link i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.nav-link:hover {
+    background-color: #e9ecef;
+    transform: translateX(10px);
+}
+
+.sidebar-footer {
+    padding: 15px;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+}
+
+/* Tombol Delete/Cancel */
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #bd2130;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-danger:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(189, 33, 48, 0.5);
+}
+
+a.btn-danger {
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 260px;
+    padding: 40px;
+    background-color: #f4f6f8;
+    min-height: 100vh;
+    width: calc(100% - 260px);
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.main-content.expanded {
+    margin-left: 0;
+    width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-260px);
+        position: fixed;
+        height: 100%;
+        z-index: 1030;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .main-content.expanded {
+        margin-left: 260px;
+    }
+}
+
+/* Todo Card */
+.todo-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.todo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.card-header p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-footer {
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-top: 1px solid #ddd;
+}
+
+.card-footer button {
+    color: #007bff;
+    font-size: 0.9rem;
+    border: none;
+    background: none;
+    padding: 0;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.card-footer button:hover {
+    color: #0056b3;
+    text-decoration: none;
+}
