@@ -18,7 +18,7 @@ class TodoController extends Controller
             return response()->json(['error' => 'User not authenticated'], 401);
         }
 
-        // Lanjutkan dengan pengecekan role
+        // Ambil Todos berdasarkan role pengguna
         if ($user->role === 'reviewerA' || $user->role === 'reviewerB') {
             // Reviewer melihat semua Todos
             $todos = Todo::with('tasks')->get();
@@ -28,12 +28,23 @@ class TodoController extends Controller
                 $query->where('role', 'revieweeA');
             })->with('tasks')->get();
         } else {
-            // Reviewee A melihat Todos miliknya
+            // Reviewee A hanya melihat Todos miliknya
             $todos = Todo::where('user_id', $user->id)->with('tasks')->get();
         }
 
+        // Hitung total progress setiap Todo berdasarkan rata-rata progress tasknya
+        $todos = $todos->map(function ($todo) {
+            $totalTasks = $todo->tasks->count();
+            $totalProgress = $totalTasks > 0 ? round($todo->tasks->avg('progress'), 2) : 0;
+
+            // Tambahkan properti progress ke setiap Todo
+            $todo->progress = $totalProgress;
+            return $todo;
+        });
+
         return response()->json($todos);
     }
+
 
     public function show($id)
     {
